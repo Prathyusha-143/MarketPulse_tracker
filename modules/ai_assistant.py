@@ -31,7 +31,7 @@ def get_stock_insights(stock_info, symbol):
 
 def chat_with_ai(messages):
     response = client.chat.completions.create(
-       model="llama-3.3-70b-versatile",
+        model="llama-3.3-70b-versatile",
         messages=messages
     )
     return response.choices[0].message.content

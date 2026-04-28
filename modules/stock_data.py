@@ -4,16 +4,14 @@ import pandas as pd
 def get_stock_info(symbol):
     stock = yf.Ticker(symbol)
     info = stock.info
-    
-    # Try multiple price fields
+
     price = (
         info.get("currentPrice") or
         info.get("regularMarketPrice") or
         info.get("previousClose") or
-        stock.fast_info.get("last_price") or
         0
     )
-    
+
     return {
         "name": info.get("longName", symbol),
         "current_price": price,

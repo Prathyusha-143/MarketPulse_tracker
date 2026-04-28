@@ -5,13 +5,19 @@ from modules.stock_data import get_stock_info
 PORTFOLIO_FILE = "data/portfolio.csv"
 
 def load_portfolio():
-    if os.path.exists(PORTFOLIO_FILE):
-        return pd.read_csv(PORTFOLIO_FILE)
-    else:
-        return pd.DataFrame(columns=["symbol", "quantity", "buy_price"])
+    try:
+        if os.path.exists(PORTFOLIO_FILE):
+            return pd.read_csv(PORTFOLIO_FILE)
+    except:
+        pass
+    return pd.DataFrame(columns=["symbol", "quantity", "buy_price"])
 
 def save_portfolio(df):
-    df.to_csv(PORTFOLIO_FILE, index=False)
+    try:
+        os.makedirs("data", exist_ok=True)
+        df.to_csv(PORTFOLIO_FILE, index=False)
+    except:
+        pass
 
 def add_stock(symbol, quantity, buy_price):
     df = load_portfolio()

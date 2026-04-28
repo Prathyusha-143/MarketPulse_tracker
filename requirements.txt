@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 streamlit
 yfinance
 pandas
@@ -8,4 +9,16 @@ scikit-learn
 ta
 groq
 requests
+=======
+streamlit
+yfinance
+pandas
+plotly
+nltk
+feedparser
+scikit-learn
+ta
+groq
+requests
+>>>>>>> 84daf61d01ecf03278c33394aaa2cd95bafef772
 python-dotenv

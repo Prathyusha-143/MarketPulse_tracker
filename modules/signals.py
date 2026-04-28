@@ -2,24 +2,19 @@ import ta
 import pandas as pd
 
 def get_signals(df):
-    # RSI
     df['RSI'] = ta.momentum.RSIIndicator(df['Close'], window=14).rsi()
 
-    # MACD
     macd = ta.trend.MACD(df['Close'])
     df['MACD'] = macd.macd()
     df['MACD_Signal'] = macd.macd_signal()
 
-    # Bollinger Bands
     bb = ta.volatility.BollingerBands(df['Close'])
     df['BB_High'] = bb.bollinger_hband()
     df['BB_Low'] = bb.bollinger_lband()
 
-    # Get latest values
     latest = df.iloc[-1]
     rsi = latest['RSI']
 
-    # Buy/Sell/Hold Signal
     if rsi < 30:
         signal = "🟢 BUY"
         reason = f"RSI is {rsi:.2f} — Stock is oversold"

@@ -17,7 +17,6 @@ def predict_price(df, days=30):
     model = LinearRegression()
     model.fit(X, y)
 
-    # Predict future dates
     last_date = pd.to_datetime(df['Date'].iloc[-1])
     future_dates = [last_date + pd.Timedelta(days=i) for i in range(1, days+1)]
     future_ordinals = np.array([d.toordinal() for d in future_dates]).reshape(-1, 1)
@@ -25,7 +24,6 @@ def predict_price(df, days=30):
     future_scaled = model.predict(future_ordinals)
     future_prices = scaler.inverse_transform(future_scaled.reshape(-1, 1)).flatten()
 
-    # Plot
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=df['Date'], y=df['Close'],
