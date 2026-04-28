@@ -1,0 +1,11 @@
+streamlit
+yfinance
+pandas
+plotly
+nltk
+feedparser
+scikit-learn
+ta
+groq
+requests
+python-dotenv
